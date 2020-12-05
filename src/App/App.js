@@ -1,15 +1,34 @@
 import React from 'react';
+import firebase from 'firebase/app';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from '../helpers/Routes';
-import MyNavbar from '../components/MyNavbar';
+import VerticalNavbar from '../components/VerticalNavbar';
+import fbConnection from '../helpers/data/connection';
+
+fbConnection();
 
 class App extends React.Component {
+  state = {
+    user: null,
+  }
+
+  componentDidMount() {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: false });
+      }
+    });
+  }
+
   render() {
+    const { user } = this.state;
     return (
       <Router>
-        <MyNavbar>
-          <Routes/>
-        </MyNavbar>
+        <VerticalNavbar user={user}>
+          <Routes user={user}/>
+        </VerticalNavbar>
       </Router>
     );
   }
