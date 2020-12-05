@@ -28,8 +28,11 @@ export default function VerticalNavbar(props) {
           </div>
           <ul className='nav-links'>
             <li><Link to='/explore'><i className="fas fa-search icon"></i>Explore</Link></li>
+            { user && <>
             <li><Link to='/my-list'><i className="fas fa-list icon"></i>My List</Link></li>
             <li><Link to='/spin'><i className="fas fa-asterisk icon"></i>Spin</Link></li>
+            </>}
+
           </ul>
         </div>
         <div className='nav-auth'>
@@ -44,7 +47,7 @@ export default function VerticalNavbar(props) {
           }
         </div>
       </div>
-      <div className='body'>
+      <div className='content'>
         {props.children}
       </div>
     </>
