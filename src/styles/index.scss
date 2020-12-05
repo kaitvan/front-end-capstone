@@ -1,8 +1,11 @@
 @import 'variables';
+@import 'navbar';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 body {
   background-color: $eggshell;
   color: $brown;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
 }

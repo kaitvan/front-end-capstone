@@ -9,13 +9,13 @@ import MyList from '../views/MyList';
 import Spin from '../views/Spin';
 import NotFound from '../views/NotFound';
 
-export default function Routes() {
+export default function Routes({ user }) {
   return (
     <Switch>
-      <Route exact path='/' component={() => <Home />}/>
-      <Route exact path='/explore' component={() => <Explore />}/>
-      <Route exact path='/my-list' component={() => <MyList />}/>
-      <Route exact path='/spin' component={() => <Spin />}/>
+      <Route exact path='/' component={() => <Home user={user}/>}/>
+      <Route exact path='/explore' component={() => <Explore user={user}/>}/>
+      <Route exact path='/my-list' component={() => <MyList user={user}/>}/>
+      <Route exact path='/spin' component={() => <Spin user={user}/>}/>
       <Route component={NotFound}/>
     </Switch>
   );
