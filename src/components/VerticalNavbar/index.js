@@ -40,7 +40,7 @@ export default function VerticalNavbar(props) {
             <>
             <img className='user-img' src={user?.photoURL} alt={user?.displayName} />
             <div className='user-info'>
-              <div>{user?.displayName}</div>
+              <div className='user-name'>{user?.displayName}</div>
               <div className='sign-out btn' onClick={(e) => signOut(e)}>Sign Out</div>
             </div>
             </>) : (<div className='sign-in btn' onClick={(e) => signIn(e)}>Sign In</div>)

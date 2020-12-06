@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Auth from '../components/auth';
+import Auth from '../components/Auth';
 
 class Home extends Component {
   quotes = [
