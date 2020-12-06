@@ -28,7 +28,7 @@ body {
   opacity: 1;
 }
 
-.add-activity-btn {
+.add-activity-btn.btn-secondary {
   background-color: $redwood;
   color: $eggshell;
   border: none;
@@ -37,7 +37,7 @@ body {
   opacity: .8;
 }
 
-.add-activity-btn:hover {
+.add-activity-btn.btn-secondary:hover {
   opacity: 1;
 }
 

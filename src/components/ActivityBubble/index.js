@@ -5,7 +5,6 @@ class ActivityBubble extends Component {
     const { activity } = this.props;
     return (
       <>
-      {console.warn(activity)}
       <div className='activity-bubble'>{activity}</div>
       </>
     );

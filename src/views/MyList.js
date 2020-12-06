@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ActivityBubble from '../components/ActivityBubble';
+import AppModal from '../components/AppModal';
+import ActivityForm from '../components/Forms/ActivityForm';
 
 class MyList extends Component {
   state = {
@@ -20,7 +22,9 @@ class MyList extends Component {
       <>
         <h1 className='banner'>My List</h1>
         <div className='content-text'>
-          <button className='add-activity-btn' onClick={(e) => this.addActivity(e)}>Add an Activity</button>
+          <AppModal buttonLabel='Add an Activity' modalTitle='Add an Activity'>
+            <ActivityForm />
+          </AppModal>
           <div className='bubble-container'>
             {showActivities()}
           </div>
