@@ -3,7 +3,6 @@ import ActivityBubble from '../components/ActivityBubble';
 import AppModal from '../components/AppModal';
 import ActivityForm from '../components/Forms/ActivityForm';
 import { getUserActivities } from '../helpers/data/activityData';
-// import AddActivityForm from '../components/Forms/AddActivityForm';
 
 class MyList extends Component {
   state = {
