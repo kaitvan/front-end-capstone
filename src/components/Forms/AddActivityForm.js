@@ -9,15 +9,25 @@ import {
   Label,
   Input,
 } from 'reactstrap';
+// import activityData from '../../helpers/data/activityData';
 
 const AddActivityForm = (props) => {
   const {
     buttonLabel,
     className,
-  } = this.props;
+  } = props;
 
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+
+  // const addActivity = (e) => {
+  //   const activityObject = {
+  //     title: '',
+  //     time: 0,
+  //     category: '',
+  //     uid: props.uid,
+  //   };
+  // };
 
   return (
     <div>

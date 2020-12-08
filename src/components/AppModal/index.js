@@ -23,7 +23,7 @@ const AppModal = (props) => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>{modalTitle}</ModalHeader>
         <ModalBody>
-          {props.children}
+          {React.cloneElement(props.children, { toggle })}
         </ModalBody>
       </Modal>
     </div>
