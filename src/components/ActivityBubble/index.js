@@ -5,8 +5,7 @@ class ActivityBubble extends Component {
     const { activity } = this.props;
     return (
       <>
-      {console.warn(activity)}
-      <div className='activity-bubble'>{activity}</div>
+      <div className='activity-bubble' id={activity.firebaseKey}>{activity.title}</div>
       </>
     );
   }
