@@ -10,11 +10,11 @@ import { addActivity, deleteActivity, updateActivity } from '../../helpers/data/
 
 class ActivityForm extends Component {
   state = {
-    firebaseKey: this.props.activity.firebaseKey || '',
-    title: this.props.activity.title || '',
-    time: this.props.activity.time || '',
+    firebaseKey: this.props.activity?.firebaseKey || '',
+    title: this.props.activity?.title || '',
+    time: this.props.activity?.time || '',
     uid: this.props.user,
-    category: this.props.activity.category || '',
+    category: this.props.activity?.category || '',
   }
 
   handleChange = (e) => {
