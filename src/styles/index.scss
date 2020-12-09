@@ -50,11 +50,18 @@ body {
   flex-wrap: wrap;
 }
 
-.activity-bubble {
-  background-color: none;
+.activity-bubble.btn.btn-secondary {
+  background-color: $eggshell;
   color: $brown;
   border-radius: 8px;
   padding: 8px;
   border: 1px solid $brown;
   margin: 16px 16px 0 0;
+  font-weight: 300;
+}
+
+.activity-bubble.btn.btn-secondary:hover {
+  background-color: $brown;
+  color: $eggshell;
+  cursor: pointer;
 }

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 class ActivityBubble extends Component {
   render() {
-    const { activity } = this.props;
+    const { activity, showActivityDetails } = this.props;
     return (
       <>
-      <div className='activity-bubble' id={activity.firebaseKey}>{activity.title}</div>
+      <div className='activity-bubble' id={activity.firebaseKey} onClick={(e) => showActivityDetails(e)}>{activity.title}</div>
       </>
     );
   }

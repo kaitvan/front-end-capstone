@@ -6,15 +6,15 @@ import {
   Input,
   Button,
 } from 'reactstrap';
-import { addActivity } from '../../helpers/data/activityData';
+import { addActivity, deleteActivity, updateActivity } from '../../helpers/data/activityData';
 
 class ActivityForm extends Component {
   state = {
-    firebaseKey: '',
-    title: '',
-    time: '',
+    firebaseKey: this.props.activity.firebaseKey || '',
+    title: this.props.activity.title || '',
+    time: this.props.activity.time || '',
     uid: this.props.user,
-    category: '',
+    category: this.props.activity.category || '',
   }
 
   handleChange = (e) => {
@@ -25,7 +25,21 @@ class ActivityForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    addActivity(this.state).then(() => {
+
+    if (this.state.firebaseKey === '') {
+      addActivity(this.state).then(() => {
+        this.props.onSave();
+      });
+    } else {
+      updateActivity(this.state).then(() => {
+        this.props.onSave();
+      });
+    }
+    this.props.toggle();
+  }
+
+  deleteActivity = (e) => {
+    deleteActivity(e.target.id).then(() => {
       this.props.onSave();
     });
     this.props.toggle();
@@ -62,6 +76,7 @@ class ActivityForm extends Component {
           </Input>
         </FormGroup>
         <Button onClick={this.handleSubmit}>Save</Button>
+        { this.props.update ? (<Button className='ml-3' id={this.props.activity.firebaseKey} onClick={this.deleteActivity}>Delete this Activity</Button>) : ('')}
       </Form>
     );
   }

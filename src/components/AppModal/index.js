@@ -11,6 +11,7 @@ const AppModal = (props) => {
     buttonLabel,
     className,
     modalTitle,
+    id,
   } = props;
 
   const [modal, setModal] = useState(false);
@@ -19,8 +20,8 @@ const AppModal = (props) => {
 
   return (
     <div>
-      <Button className='add-activity-btn' onClick={toggle}>{buttonLabel}</Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
+      <Button className={className} id={id} onClick={toggle}>{buttonLabel}</Button>
+      <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{modalTitle}</ModalHeader>
         <ModalBody>
           {React.cloneElement(props.children, { toggle })}

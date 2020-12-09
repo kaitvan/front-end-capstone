@@ -14,4 +14,15 @@ const addActivity = (object) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export { addActivity, getUserActivities };
+const updateActivity = (object) => new Promise((resolve, reject) => {
+  axios.patch(`${baseUrl}/activities/${object.firebaseKey}.json`, object).then(resolve).catch((error) => reject(error));
+});
+
+const deleteActivity = (firebaseKey) => axios.delete(`${baseUrl}/activities/${firebaseKey}.json`);
+
+export {
+  getUserActivities,
+  addActivity,
+  updateActivity,
+  deleteActivity,
+};
