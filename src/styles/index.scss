@@ -28,6 +28,19 @@ body {
   opacity: 1;
 }
 
+.spin-btn.btn-secondary {
+  background-color: $redwood;
+  color: $eggshell;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  opacity: .8;
+}
+
+.spin-btn.btn-secondary:hover {
+  opacity: 1;
+}
+
 .add-activity-btn.btn-secondary {
   background-color: $redwood;
   color: $eggshell;

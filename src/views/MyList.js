@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import ActivityBubble from '../components/ActivityBubble';
 import AppModal from '../components/AppModal';
 import ActivityForm from '../components/Forms/ActivityForm';
 import { getUserActivities } from '../helpers/data/activityData';
@@ -20,11 +19,6 @@ class MyList extends Component {
     });
   }
 
-  // showActivityDetails = (e) => {
-  //   const firebaseKey = e.target.id;
-  //   console.warn('activity clicked key', firebaseKey);
-  // }
-
   render() {
     const { activities } = this.state;
     const showActivities = () => (
@@ -33,7 +27,6 @@ class MyList extends Component {
           <ActivityForm user={this.state.uid} activity={activity} onSave={this.getActivities} update={true}/>
         </AppModal>))
     );
-      // activities.map((activity) => <ActivityBubble key={activity.firebaseKey} activity={activity} showActivityDetails={this.showActivityDetails}/>)
 
     return (
       <>
