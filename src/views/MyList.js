@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppModal from '../components/AppModal';
 import ActivityForm from '../components/Forms/ActivityForm';
 import { getUserActivities } from '../helpers/data/activityData';
+import Filter from '../components/Filter';
 
 class MyList extends Component {
   state = {
@@ -35,6 +36,7 @@ class MyList extends Component {
           <AppModal buttonLabel='Add an Activity' className='add-activity-btn' modalTitle='Add an Activity'>
             <ActivityForm user={this.state.uid} onSave={this.getActivities} update={false}/>
           </AppModal>
+          <Filter />
           <div className='bubble-container'>
             {showActivities()}
           </div>

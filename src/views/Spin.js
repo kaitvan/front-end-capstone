@@ -9,6 +9,7 @@ class Spin extends Component {
     chosenActivity: '',
     chosenColor: '',
     showActivity: false,
+    speed: 500,
     // ctx: {},
     // canvas: document.getElementById('canvas'),
   }
@@ -31,26 +32,28 @@ class Spin extends Component {
   }
 
   spin = () => {
-    const { activities } = this.state;
+    const { activities, speed } = this.state;
     this.setState({ showActivity: false });
-    console.warn(activities);
     let i = 0;
+    let counter = 1;
     const mySpinner = () => {
       if (i >= activities.length) {
         i = 0;
         this.setState({ chosenActivity: activities[i] });
         i += 1;
+        counter += 1;
       } else {
         this.setState({ chosenActivity: activities[i] });
         i += 1;
+        counter += 1;
       }
     };
-    const rotate = setInterval(mySpinner, 2000);
+    const rotate = setInterval(mySpinner, speed * counter);
     const stopRotation = () => {
       clearInterval(rotate);
       this.setState({ showActivity: true });
     };
-    const totalTime = Math.random() * 10000 + 3000;
+    const totalTime = Math.random() * 10000 + 4000;
     setTimeout(stopRotation, totalTime);
   }
 
@@ -110,7 +113,7 @@ class Spin extends Component {
       <>
       <h1 className='banner'>Spin</h1>
       <div className='content-text'>
-        <Button type='button' className='spin-btn' id='spin' onClick={this.spin}>Spin</Button>
+        { this.state.activities?.length && <Button type='button' className='spin-btn' id='spin' onClick={this.spin}>Spin</Button>}
           {/* <canvas id='canvas' width='500' height='500'>{this.drawSpinner()}</canvas> */}
         <div className='spinner'>{this.state.chosenActivity}</div>
         { this.state.showActivity ? (<div className='chosenActivity'>{this.state.chosenActivity}</div>) : ('') }
