@@ -53,9 +53,15 @@ class Wheel extends Component {
     }, 150);
   }
 
+  handleClick = (e) => {
+    if (e.target.id === 'spin') {
+      console.warn('wheel clicked');
+    }
+  }
+
   render() {
     return (
-      <div onWheel={this.handleScroll} ref={(refId) => { this.wheel = refId; }} className='wheel' style={styles.wheel}>
+      <div onWheel={this.handleScroll} id='spin' onClick={this.handleClick} ref={(refId) => { this.wheel = refId; }} className='wheel' style={styles.wheel}>
         {this.state.activities.map((activity, i) => (
         <Option
           key={activity.firebaseKey}
