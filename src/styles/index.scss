@@ -10,6 +10,18 @@ body {
   font-weight: 200;
 }
 
+// .wheel {
+//   overflow: hidden;
+// }
+
+.option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  padding: 8px;
+}
+
 .content-text {
   padding: 16px;
 }
@@ -28,21 +40,30 @@ body {
   opacity: 1;
 }
 
+.apply-filters-btn.btn-secondary {
+  background-color: $brown;
+  color: $eggshell;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  opacity: .8;
+}
+
+.apply-filters-btn.btn-secondary:hover {
+  opacity: 1;
+}
+
 .filter-btn.btn-secondary {
   margin-top: 16px;
   color: $brown;
   background-color: $eggshell;
   text-transform: uppercase;
   border: none;
-  padding: 8px;
+  padding: 0px;
   .icon {
     align-self: center;
     margin-left: 8px;
   }
-}
-
-.filters {
-  padding-left: 8px;
 }
 
 .spin-btn.btn-secondary {

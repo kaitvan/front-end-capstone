@@ -24,6 +24,7 @@ class Filter extends Component {
           <div className='filters'>
             <p>Put filters here</p>
           </div>
+          <Button className='apply-filters-btn'>FILTER</Button>
           </>
         ) : (<Button className='filter-btn' onClick={this.showFilters}>Filter By<i className="fas fa-caret-down icon"></i></Button>)
       }
