@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
 import { getUserActivities } from '../helpers/data/activityData';
 import Wheel from '../components/Wheel';
 
@@ -85,7 +85,6 @@ class Spin extends Component {
       <>
       <h1 className='banner'>Spin</h1>
       <div className='content-text'>
-        { this.state.activities.length && <Button type='button' className='spin-btn' id='spin' onClick={this.spin}>Spin</Button>}
           <Wheel uid={this.state.uid}/>
       </div>
       </>
