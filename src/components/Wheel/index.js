@@ -10,6 +10,9 @@ class Wheel extends Component {
     activities: [],
     uid: this.props.uid,
     centerOfWheel: {},
+    snapInProgress: false,
+    optionsLoaded: 0,
+    loaded: false,
   }
 
   tempTheta = 0.0;
@@ -33,59 +36,39 @@ class Wheel extends Component {
     });
   }
 
-  handleScroll = (e) => {
-    clearTimeout(this.animId);
-    const scrollSpeed = (e.deltaY / 360) * 20;
-    this.tempTheta += scrollSpeed;
-
-    this.wheel.style.transform = `translate(-50%, -50%) rotate(${this.tempTheta}deg)`;
-
-    for (let i = 0; i < this.wheel.children.length; i += 1) {
-      this.wheel.children[i].style.transform = `translate(-50%, -50%) rotate(${-1 * this.tempTheta}deg)`;
-    }
-
-    this.animId = setTimeout(() => {
-      this.setState({ theta: this.tempTheta });
-    }, 150);
+  snapBack = () => {
+    console.warn('spin finished');
+    this.setState({ snapInProgress: false });
   }
 
-  startAngle = 0;
+  handleClick = (e) => {
+    if (e.target.id === 'spin' && !this.state.snapInProgress) {
+      clearTimeout(this.animId);
+      const randomNumber = Math.floor(Math.random() * 30 + 10);
+      this.tempTheta = randomNumber * (360 / this.state.activities.length);
+      const time = this.tempTheta / 200;
+      console.warn('this.tempTheta', this.tempTheta);
+      console.warn('time', time);
 
-  spinTimeout = null;
+      this.wheel.style.transform = `translate(-50%, -50%) rotate(${this.tempTheta}deg)`;
+      this.wheel.style.transition = `all ${time}s`;
 
-  // handleClick = (e) => {
-  //   if (e.target.id === 'spin') {
-  //     const spinAngleStart = Math.random() * 10 + 10;
-  //     let spinTime = 0;
-  //     const spinTimeTotal = Math.random() * 3 + 4 * 1000;
+      for (let i = 0; i < this.wheel.children.length; i += 1) {
+        this.wheel.children[i].style.transform = `translate(-50%, -50%) rotate(${-1 * this.tempTheta}deg)`;
+        this.wheel.children[i].style.transition = `all ${time}s`;
+      }
 
-  //     const stopRotateWheel = () => {
-  //       clearTimeout(this.spinTimeout);
-  //     };
-
-  //     const easeOut = (t, b, c, d) => {
-  //       const ts = (t / d) * t;
-  //       const tc = ts * t;
-  //       return b + c * (tc + -3 * ts + 3 * t);
-  //     };
-
-  //     const rotateWheel = () => {
-  //       spinTime += 30;
-  //       if (spinTime >= spinTimeTotal) {
-  //         stopRotateWheel();
-  //       }
-  //       const spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
-  //       this.startAngle += (spinAngle * Math.PI / 180);
-  //       this.spinTimeout = setTimeout(rotateWheel(), 30);
-  //     };
-
-  //     rotateWheel();
-  //   }
-  // }
+      this.animId = setTimeout(() => {
+        this.setState({ theta: this.tempTheta, snapInProgress: true });
+        this.snapBack();
+      }, time);
+    }
+  }
 
   render() {
     return (
-      <div onWheel={this.handleScroll} id='spin' onClick={this.handleClick} ref={(refId) => { this.wheel = refId; }} className='wheel' style={styles.wheel}>SPIN
+      <>
+      <div ref={(refId) => { this.wheel = refId; }} className='wheel' style={styles.wheel}>
         {this.state.activities.map((activity, i) => (
         <Option
           key={activity.firebaseKey}
@@ -96,6 +79,10 @@ class Wheel extends Component {
           style={{ transform: `rotate(-${this.state.theta * 0.07}deg)` }}
         />))}
       </div>
+      <div id='spin' onClick={this.handleClick} className='wheel'>SPIN
+        <div id='triangle-up'></div>
+      </div>
+      </>
     );
   }
 }
@@ -110,6 +97,7 @@ const styles = {
     backgroundColor: '#A66255',
     transform: 'translate(-50%, -50%)',
     borderRadius: '50%',
+    fontWeight: '500',
   },
 };
 
