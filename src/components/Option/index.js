@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
 class Option extends Component {
-  state = {
-
-  }
+  state = {}
 
   getMyCoordinates = (theta, radius) => ({
-    x: Math.cos(theta) * radius,
-    y: Math.sin(theta) * radius,
+    x: Math.sin(theta) * radius,
+    y: Math.cos(theta) * radius,
   })
 
   newCoordinates = this.getMyCoordinates(this.props.theta, this.props.radius);

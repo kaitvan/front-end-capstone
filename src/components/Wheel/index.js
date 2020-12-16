@@ -10,7 +10,7 @@ class Wheel extends Component {
     activities: [],
     uid: this.props.uid,
     centerOfWheel: {},
-    snapInProgress: false,
+    spinInProgress: false,
     optionsLoaded: 0,
     loaded: false,
   }
@@ -36,19 +36,16 @@ class Wheel extends Component {
     });
   }
 
-  snapBack = () => {
-    console.warn('spin finished');
-    this.setState({ snapInProgress: false });
+  stopSpin = () => {
+    this.setState({ spinInProgress: false });
   }
 
   handleClick = (e) => {
-    if (e.target.id === 'spin' && !this.state.snapInProgress) {
+    if (e.target.id === 'spin' && !this.state.spinInProgress) {
       clearTimeout(this.animId);
       const randomNumber = Math.floor(Math.random() * 30 + 10);
       this.tempTheta = randomNumber * (360 / this.state.activities.length);
       const time = this.tempTheta / 200;
-      console.warn('this.tempTheta', this.tempTheta);
-      console.warn('time', time);
 
       this.wheel.style.transform = `translate(-50%, -50%) rotate(${this.tempTheta}deg)`;
       this.wheel.style.transition = `all ${time}s`;
@@ -59,8 +56,8 @@ class Wheel extends Component {
       }
 
       this.animId = setTimeout(() => {
-        this.setState({ theta: this.tempTheta, snapInProgress: true });
-        this.snapBack();
+        this.setState({ theta: this.tempTheta, spinInProgress: true });
+        this.stopSpin();
       }, time);
     }
   }
