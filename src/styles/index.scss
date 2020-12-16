@@ -10,6 +10,33 @@ body {
   font-weight: 200;
 }
 
+#spin {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  height: 200px;
+  width: 200px;
+  background-color: #A66255;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 500;
+}
+
+#spin:hover {
+  font-size: 50px;
+}
+
+#triangle-up {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid $redwood;
+  position: absolute;
+  top: -15%;
+  left: 25%;
+}
+
 legend {
   font-size: 16px;
   text-transform: uppercase;

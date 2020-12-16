@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function getMyCoordinates(theta, radius) {
-  return {
-    x: Math.cos(theta) * radius,
-    y: Math.sin(theta) * radius,
-  };
-}
+class Option extends Component {
+  state = {}
 
-function Option(props) {
-  const newCoordinates = getMyCoordinates(props.theta, props.radius);
+  getMyCoordinates = (theta, radius) => ({
+    x: Math.sin(theta) * radius,
+    y: Math.cos(theta) * radius,
+  })
 
-  return (
-  <div className='option' style={ { ...styles.option, left: `${props.center.x + newCoordinates.x}px`, top: `${props.center.y - newCoordinates.y}px` } }>{props.activity.title}</div>
-  );
+  newCoordinates = this.getMyCoordinates(this.props.theta, this.props.radius);
+
+  render() {
+    return (
+      <div className='option'
+        style={ {
+          ...styles.option,
+          left: `${this.props.center.x + this.newCoordinates.x}px`,
+          top: `${this.props.center.y - this.newCoordinates.y}px`,
+        } }>{this.props.activity.title}</div>
+    );
+  }
 }
 
 const styles = {
@@ -32,5 +39,3 @@ const styles = {
 };
 
 export default React.memo(Option);
-
-// react.memo keeps those elements from re-rendering every time a parent renders

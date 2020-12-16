@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-// import { Button } from 'reactstrap';
 import { getUserActivities } from '../helpers/data/activityData';
 import Wheel from '../components/Wheel';
+import Filter from '../components/Filter';
 
 class Spin extends Component {
   state = {
     uid: this.props.user.uid,
     activities: [],
-    chosenActivity: '',
-    chosenColor: '',
     showActivity: false,
+    filteredActivities: [],
   }
 
   componentDidMount() {
@@ -24,60 +23,35 @@ class Spin extends Component {
     });
   }
 
-  spin = () => {
-    const { activities } = this.state;
-    this.setState({ showActivity: false });
-    // let i = 0;
-    const chosenActivity = activities[Math.floor(Math.random() * activities.length)];
-    console.warn('chosen', chosenActivity);
-    // const mySpinner = () => {
-    //   if (i >= activities.length) {
-    //     i = 0;
-    //     this.setState({ chosenActivity: activities[i] });
-    //     i += 1;
-    //   } else {
-    //     this.setState({ chosenActivity: activities[i] });
-    //     i += 1;
-    //   }
-    // };
+  filterActivities = (e, timeFiltersArray, categoryFiltersArray) => {
+    if (e.target.id === 'apply-filters') {
+      let activitiesFilteredByTime = [];
+      let activitiesFilteredByCategory = [];
 
-    // const totalTime = Math.random() * 3000 + 1000;
+      if (timeFiltersArray.length === 0) {
+        activitiesFilteredByTime = this.state.activities;
+      } else {
+        this.state.activities.map((activity) => {
+          if (timeFiltersArray.includes(activity.time)) {
+            activitiesFilteredByTime.push(activity);
+          }
+          return activitiesFilteredByTime;
+        });
+      }
 
-    // const setTimer = (intervalFunction, timeoutFunction, time) => {
-    //   const interval = setInterval(intervalFunction, speed);
+      if (categoryFiltersArray.length === 0) {
+        activitiesFilteredByCategory = activitiesFilteredByTime;
+      } else {
+        activitiesFilteredByTime.map((activity) => {
+          if (categoryFiltersArray.includes(activity.category)) {
+            activitiesFilteredByCategory.push(activity);
+          }
+          return activitiesFilteredByCategory;
+        });
+      }
 
-    //   const slowRotation = () => {
-    //     clearInterval(interval);
-    //     setTimer(mySpinner, 'slower', speed + 1000, totalTime);
-    //   };
-
-    //   const slowerRotation = () => {
-    //     clearInterval(interval);
-    //     setTimer(mySpinner, 'slowest', speed + 1000, totalTime);
-    //   };
-
-    //   const slowestRotation = () => {
-    //     clearInterval(interval);
-    //     setTimer(mySpinner, 'stop', speed + 1000, totalTime);
-    //   };
-
-    //   const stopRotation = () => {
-    //     clearInterval(interval);
-    //     this.setState({ showActivity: true, chosenActivity });
-    //   };
-
-    //   if (timeoutFunction === 'slow') {
-    //     setTimeout(slowRotation, time);
-    //   } else if (timeoutFunction === 'slower') {
-    //     setTimeout(slowerRotation, time);
-    //   } else if (timeoutFunction === 'slowest') {
-    //     setTimeout(slowestRotation, time);
-    //   } else if (timeoutFunction === 'stop') {
-    //     setTimeout(stopRotation, time);
-    //   }
-    // };
-
-    // setTimer(mySpinner, 'slow', totalTime);
+      this.setState({ filteredActivities: activitiesFilteredByCategory });
+    }
   }
 
   render() {
@@ -85,7 +59,8 @@ class Spin extends Component {
       <>
       <h1 className='banner'>Spin</h1>
       <div className='content-text'>
-          <Wheel uid={this.state.uid}/>
+        <Filter filterActivities={this.filterActivities}/>
+        <Wheel uid={this.state.uid}/>
       </div>
       </>
     );
