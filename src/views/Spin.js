@@ -32,25 +32,13 @@ class Spin extends Component {
         this.setState({ nothingFound: false });
       } else if (timeFiltersArray.length > 0 && categoryFiltersArray.length > 0) {
         filteredActivities = this.state.activities.filter((activity) => timeFiltersArray.includes(activity.time) && categoryFiltersArray.includes(activity.category));
-        if (filteredActivities.length === 0) {
-          this.setState({ nothingFound: true });
-        } else {
-          this.setState({ nothingFound: false });
-        }
+        filteredActivities.length === 0 ? this.setState({ nothingFound: true }) : this.setState({ nothingFound: false });
       } else if (timeFiltersArray.length === 0) {
         filteredActivities = this.state.activities.filter((activity) => categoryFiltersArray.includes(activity.category));
-        if (filteredActivities.length === 0) {
-          this.setState({ nothingFound: true });
-        } else {
-          this.setState({ nothingFound: false });
-        }
+        filteredActivities.length === 0 ? this.setState({ nothingFound: true }) : this.setState({ nothingFound: false });
       } else if (categoryFiltersArray.length === 0) {
         filteredActivities = this.state.activities.filter((activity) => timeFiltersArray.includes(activity.time));
-        if (filteredActivities.length === 0) {
-          this.setState({ nothingFound: true });
-        } else {
-          this.setState({ nothingFound: false });
-        }
+        filteredActivities.length === 0 ? this.setState({ nothingFound: true }) : this.setState({ nothingFound: false });
       }
 
       this.setState({ filteredActivities });
@@ -75,7 +63,6 @@ class Spin extends Component {
       <div className='content-text'>
         <Filter filterActivities={this.filterActivities}/>
         <Wheel uid={this.state.uid} activities={useThisArray}/>
-        {console.warn('useThisArray in spin view', useThisArray)}
       </div>
       </>
     );

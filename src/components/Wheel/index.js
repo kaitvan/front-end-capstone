@@ -17,8 +17,6 @@ class Wheel extends Component {
   animId = null;
 
   componentDidMount() {
-    // console.warn('this.state.activities in wheel component', this.state.activities);
-
     const centerOfWheel = {
       x: parseFloat(this.wheel.style.width) / 2,
       y: parseFloat(this.wheel.style.height) / 2,
@@ -30,15 +28,9 @@ class Wheel extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.activities !== this.props.activities) {
       this.setState({ activities: this.props.activities });
-      this.showActivities();
+      // this.showActivities();
     }
   }
-
-  // getActivities = () => {
-  //   getUserActivities(this.state.uid).then((activitiesArray) => {
-  //     this.setState({ activities: activitiesArray });
-  //   });
-  // }
 
   stopSpin = () => {
     this.setState({ spinInProgress: false });
@@ -66,23 +58,26 @@ class Wheel extends Component {
     }
   }
 
-  showActivities = () => (
-    this.state.activities.map((activity, i) => (
+  showActivities = () => {
+    console.warn('this.state.activities', this.state.activities);
+    return this.state.activities.map((activity, i) => (
       <Option
         key={activity.firebaseKey}
         activity={activity}
-        theta={(Math.PI / (this.state.activities.length / 2)) * i}
+        // theta={(Math.PI / (this.state.activities.length / 2)) * i}
+        i={i}
+        numberOfActivities={this.state.activities.length}
+        activities={this.state.activities}
         radius={this.state.radius}
         center={this.state.centerOfWheel}
         style={{ transform: `rotate(-${this.state.theta * 0.07}deg)` }}
-      />))
-  );
+      />));
+  };
 
   render() {
     return (
       <>
       <div ref={(refId) => { this.wheel = refId; }} className='wheel' style={styles.wheel}>
-        {console.warn('this.state.activities in wheel', this.state.activities)}
         {this.showActivities()}
       </div>
       <div id='spin' onClick={this.handleClick} className='wheel'>SPIN

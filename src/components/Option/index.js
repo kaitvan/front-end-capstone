@@ -3,12 +3,18 @@ import React, { Component } from 'react';
 class Option extends Component {
   state = {}
 
-  getMyCoordinates = (theta, radius) => ({
-    x: Math.sin(theta) * radius,
-    y: Math.cos(theta) * radius,
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.activities !== this.props.activities) {
+      this.getMyCoordinates(this.props.radius);
+    }
+  }
+
+  getMyCoordinates = (radius) => ({
+    x: Math.sin((Math.PI / (this.props.activities.length / 2)) * this.props.i) * radius,
+    y: Math.cos((Math.PI / (this.props.activities.length / 2)) * this.props.i) * radius,
   })
 
-  newCoordinates = this.getMyCoordinates(this.props.theta, this.props.radius);
+  newCoordinates = this.getMyCoordinates(this.props.radius);
 
   render() {
     return (
