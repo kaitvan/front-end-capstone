@@ -5,14 +5,11 @@ import Option from '../Option';
 class Wheel extends Component {
   state = {
     radius: 200,
-    options: [],
     theta: 0.0,
     activities: this.props.activities,
     uid: this.props.uid,
     centerOfWheel: {},
     spinInProgress: false,
-    optionsLoaded: 0,
-    loaded: false,
   }
 
   tempTheta = 0.0;
@@ -20,7 +17,7 @@ class Wheel extends Component {
   animId = null;
 
   componentDidMount() {
-    console.warn('this.state.activities in wheel component', this.state.activities);
+    // console.warn('this.state.activities in wheel component', this.state.activities);
 
     const centerOfWheel = {
       x: parseFloat(this.wheel.style.width) / 2,
@@ -33,6 +30,7 @@ class Wheel extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.activities !== this.props.activities) {
       this.setState({ activities: this.props.activities });
+      this.showActivities();
     }
   }
 
@@ -84,6 +82,7 @@ class Wheel extends Component {
     return (
       <>
       <div ref={(refId) => { this.wheel = refId; }} className='wheel' style={styles.wheel}>
+        {console.warn('this.state.activities in wheel', this.state.activities)}
         {this.showActivities()}
       </div>
       <div id='spin' onClick={this.handleClick} className='wheel'>SPIN
