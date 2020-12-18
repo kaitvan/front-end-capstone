@@ -9,6 +9,7 @@ class Explore extends Component {
     uid: this.props.user.uid,
     activities: [],
     filteredActivities: [],
+    nothingFound: false,
   }
 
   componentDidMount() {
@@ -23,40 +24,33 @@ class Explore extends Component {
 
   filterActivities = (e, timeFiltersArray, categoryFiltersArray) => {
     if (e.target.id === 'apply-filters') {
-      let activitiesFilteredByTime = [];
-      let activitiesFilteredByCategory = [];
+      let filteredActivities = [];
 
-      if (timeFiltersArray.length === 0) {
-        activitiesFilteredByTime = this.state.activities;
-      } else {
-        this.state.activities.map((activity) => {
-          if (timeFiltersArray.includes(activity.time)) {
-            activitiesFilteredByTime.push(activity);
-          }
-          return activitiesFilteredByTime;
-        });
+      if (timeFiltersArray.length === 0 && categoryFiltersArray.length === 0) {
+        filteredActivities = this.state.activities;
+        this.setState({ nothingFound: false });
+      } else if (timeFiltersArray.length > 0 && categoryFiltersArray.length > 0) {
+        filteredActivities = this.state.activities.filter((activity) => timeFiltersArray.includes(activity.time) && categoryFiltersArray.includes(activity.category));
+        filteredActivities.length === 0 ? this.setState({ nothingFound: true }) : this.setState({ nothingFound: false });
+      } else if (timeFiltersArray.length === 0) {
+        filteredActivities = this.state.activities.filter((activity) => categoryFiltersArray.includes(activity.category));
+        filteredActivities.length === 0 ? this.setState({ nothingFound: true }) : this.setState({ nothingFound: false });
+      } else if (categoryFiltersArray.length === 0) {
+        filteredActivities = this.state.activities.filter((activity) => timeFiltersArray.includes(activity.time));
+        filteredActivities.length === 0 ? this.setState({ nothingFound: true }) : this.setState({ nothingFound: false });
       }
 
-      if (categoryFiltersArray.length === 0) {
-        activitiesFilteredByCategory = activitiesFilteredByTime;
-      } else {
-        activitiesFilteredByTime.map((activity) => {
-          if (categoryFiltersArray.includes(activity.category)) {
-            activitiesFilteredByCategory.push(activity);
-          }
-          return activitiesFilteredByCategory;
-        });
-      }
-
-      this.setState({ filteredActivities: activitiesFilteredByCategory });
+      this.setState({ filteredActivities });
     }
   }
 
   render() {
-    const { activities, filteredActivities } = this.state;
+    const { activities, filteredActivities, nothingFound } = this.state;
     let useThisArray = [];
 
-    if (filteredActivities.length === 0) {
+    if (filteredActivities.length === 0 && nothingFound) {
+      useThisArray = filteredActivities;
+    } else if (filteredActivities.length === 0 && !nothingFound) {
       useThisArray = activities;
     } else {
       useThisArray = filteredActivities;

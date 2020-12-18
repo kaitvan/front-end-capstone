@@ -1,22 +1,40 @@
 import React, { Component } from 'react';
 
 class Option extends Component {
-  state = {}
+  state = {
+    coordinates: {
+      x: '',
+      y: '',
+    },
+  }
 
-  getMyCoordinates = (theta, radius) => ({
-    x: Math.sin(theta) * radius,
-    y: Math.cos(theta) * radius,
+  componentDidMount() {
+    this.setCoordinates();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.activities !== this.props.activities) {
+      this.setCoordinates();
+    }
+  }
+
+  getMyCoordinates = (radius) => ({
+    x: Math.sin((Math.PI / (this.props.numberOfActivities / 2)) * this.props.i) * radius,
+    y: Math.cos((Math.PI / (this.props.numberOfActivities / 2)) * this.props.i) * radius,
   })
 
-  newCoordinates = this.getMyCoordinates(this.props.theta, this.props.radius);
+  setCoordinates = () => {
+    const newCoordinates = this.getMyCoordinates(this.props.radius);
+    this.setState({ coordinates: newCoordinates });
+  }
 
   render() {
     return (
       <div className='option'
         style={ {
           ...styles.option,
-          left: `${this.props.center.x + this.newCoordinates.x}px`,
-          top: `${this.props.center.y - this.newCoordinates.y}px`,
+          left: `${this.props.center.x + this.state.coordinates.x}px`,
+          top: `${this.props.center.y - this.state.coordinates.y}px`,
         } }>{this.props.activity.title}</div>
     );
   }
@@ -38,4 +56,4 @@ const styles = {
   },
 };
 
-export default React.memo(Option);
+export default Option;

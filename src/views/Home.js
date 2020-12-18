@@ -5,7 +5,7 @@ class Home extends Component {
   quotes = [
     'When we choose to honor ourselves in tough moments, we allow ourselves to be free.',
     'Recognize and return to the voice of compassion you always carry within you.',
-    'Self-compassion is the practice of treating yourself like a firend through highs and lows.',
+    'Self-compassion is the practice of treating yourself like a friend through highs and lows.',
   ];
 
   render() {

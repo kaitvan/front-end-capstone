@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import Option from '../Option';
-import { getUserActivities } from '../../helpers/data/activityData';
+// import { getUserActivities } from '../../helpers/data/activityData';
 
 class Wheel extends Component {
   state = {
     radius: 200,
-    options: [],
     theta: 0.0,
-    activities: [],
+    activities: this.props.activities,
     uid: this.props.uid,
     centerOfWheel: {},
     spinInProgress: false,
-    optionsLoaded: 0,
-    loaded: false,
   }
 
   tempTheta = 0.0;
@@ -20,8 +17,6 @@ class Wheel extends Component {
   animId = null;
 
   componentDidMount() {
-    this.getActivities();
-
     const centerOfWheel = {
       x: parseFloat(this.wheel.style.width) / 2,
       y: parseFloat(this.wheel.style.height) / 2,
@@ -30,10 +25,10 @@ class Wheel extends Component {
     this.setState({ centerOfWheel });
   }
 
-  getActivities = () => {
-    getUserActivities(this.state.uid).then((activitiesArray) => {
-      this.setState({ activities: activitiesArray });
-    });
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.activities !== this.props.activities) {
+      this.setState({ activities: this.props.activities });
+    }
   }
 
   stopSpin = () => {
@@ -63,18 +58,26 @@ class Wheel extends Component {
   }
 
   render() {
-    return (
-      <>
-      <div ref={(refId) => { this.wheel = refId; }} className='wheel' style={styles.wheel}>
-        {this.state.activities.map((activity, i) => (
+    const showActivities = () => {
+      console.warn('this.state.activities', this.state.activities);
+      return this.state.activities.map((activity, i) => (
         <Option
           key={activity.firebaseKey}
           activity={activity}
-          theta={(Math.PI / (this.state.activities.length / 2)) * i}
+          // theta={(Math.PI / (this.state.activities.length / 2)) * i}
+          i={i}
+          numberOfActivities={this.state.activities.length}
+          activities={this.state.activities}
           radius={this.state.radius}
           center={this.state.centerOfWheel}
           style={{ transform: `rotate(-${this.state.theta * 0.07}deg)` }}
-        />))}
+        />));
+    };
+
+    return (
+      <>
+      <div ref={(refId) => { this.wheel = refId; }} className='wheel' style={styles.wheel}>
+        {showActivities()}
       </div>
       <div id='spin' onClick={this.handleClick} className='wheel'>SPIN
         <div id='triangle-up'></div>
