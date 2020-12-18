@@ -28,7 +28,6 @@ class Wheel extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.activities !== this.props.activities) {
       this.setState({ activities: this.props.activities });
-      // this.showActivities();
     }
   }
 
@@ -58,27 +57,27 @@ class Wheel extends Component {
     }
   }
 
-  showActivities = () => {
-    console.warn('this.state.activities', this.state.activities);
-    return this.state.activities.map((activity, i) => (
-      <Option
-        key={activity.firebaseKey}
-        activity={activity}
-        // theta={(Math.PI / (this.state.activities.length / 2)) * i}
-        i={i}
-        numberOfActivities={this.state.activities.length}
-        activities={this.state.activities}
-        radius={this.state.radius}
-        center={this.state.centerOfWheel}
-        style={{ transform: `rotate(-${this.state.theta * 0.07}deg)` }}
-      />));
-  };
-
   render() {
+    const showActivities = () => {
+      console.warn('this.state.activities', this.state.activities);
+      return this.state.activities.map((activity, i) => (
+        <Option
+          key={activity.firebaseKey}
+          activity={activity}
+          // theta={(Math.PI / (this.state.activities.length / 2)) * i}
+          i={i}
+          numberOfActivities={this.state.activities.length}
+          activities={this.state.activities}
+          radius={this.state.radius}
+          center={this.state.centerOfWheel}
+          style={{ transform: `rotate(-${this.state.theta * 0.07}deg)` }}
+        />));
+    };
+
     return (
       <>
       <div ref={(refId) => { this.wheel = refId; }} className='wheel' style={styles.wheel}>
-        {this.showActivities()}
+        {showActivities()}
       </div>
       <div id='spin' onClick={this.handleClick} className='wheel'>SPIN
         <div id='triangle-up'></div>
