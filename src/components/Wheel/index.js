@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Option from '../Option';
-// import { getUserActivities } from '../../helpers/data/activityData';
 
 class Wheel extends Component {
   state = {
@@ -58,13 +57,10 @@ class Wheel extends Component {
   }
 
   render() {
-    const showActivities = () => {
-      console.warn('this.state.activities', this.state.activities);
-      return this.state.activities.map((activity, i) => (
+    const showActivities = () => this.state.activities.map((activity, i) => (
         <Option
           key={activity.firebaseKey}
           activity={activity}
-          // theta={(Math.PI / (this.state.activities.length / 2)) * i}
           i={i}
           numberOfActivities={this.state.activities.length}
           activities={this.state.activities}
@@ -72,7 +68,6 @@ class Wheel extends Component {
           center={this.state.centerOfWheel}
           style={{ transform: `rotate(-${this.state.theta * 0.07}deg)` }}
         />));
-    };
 
     return (
       <>

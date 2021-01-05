@@ -10,7 +10,6 @@ import {
   addActivity,
   deleteActivity,
   updateActivity,
-  // addExploreActivity,
 } from '../../helpers/data/activityData';
 
 class ActivityForm extends Component {
@@ -31,17 +30,6 @@ class ActivityForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    // const exploreActivity = {
-    //   firebaseKey: '',
-    //   title: this.state.title,
-    //   time: this.state.time,
-    //   category: this.state.category,
-    // };
-
-    // if (this.state.firebaseKey === '') {
-    //   addExploreActivity(exploreActivity).then(() => {
-    //     this.props.onSave();
-    //   });
     if (this.state.firebaseKey === '') {
       addActivity(this.state).then(() => {
         this.props.onSave();

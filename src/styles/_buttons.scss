@@ -1,0 +1,42 @@
+.sign-in-btn {
+  margin-top: 30px;
+  background-color: $redwood;
+  color: $eggshell;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  opacity: .8;
+}
+
+.sign-in-btn:hover {
+  opacity: 1;
+}
+
+.add-activity-btn.btn-secondary {
+  background-color: $redwood;
+  color: $eggshell;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  opacity: .8;
+}
+
+.add-activity-btn.btn-secondary:hover {
+  opacity: 1;
+}
+
+.activity-bubble.btn.btn-secondary {
+  background-color: $eggshell;
+  color: $brown;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid $brown;
+  margin: 16px 16px 0 0;
+  font-weight: 300;
+}
+
+.activity-bubble.btn.btn-secondary:hover {
+  background-color: $brown;
+  color: $eggshell;
+  cursor: pointer;
+}

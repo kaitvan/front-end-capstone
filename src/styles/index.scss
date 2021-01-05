@@ -1,5 +1,8 @@
 @import 'variables';
 @import 'navbar';
+@import 'wheel';
+@import 'filters';
+@import 'buttons';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -10,140 +13,8 @@ body {
   font-weight: 200;
 }
 
-#spin {
-  position: absolute;
-  top: 50%;
-  left: 60%;
-  height: 200px;
-  width: 200px;
-  background-color: #A66255;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 500;
-}
-
-#spin:hover {
-  font-size: 50px;
-}
-
-#triangle-up {
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 100px solid $redwood;
-  position: absolute;
-  top: -15%;
-  left: 25%;
-}
-
-legend {
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.wheel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 40px;
-  color: $eggshell;
-}
-
-.wheel:hover {
-  cursor: pointer;
-}
-
-.wheel > .option:hover {
-  cursor: default;
-}
-
-.option {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 11px;
-  padding: 8px;
-}
-
 .content-text {
   padding: 16px;
-}
-
-.sign-in-btn {
-  margin-top: 30px;
-  background-color: $redwood;
-  color: $eggshell;
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  opacity: .8;
-}
-
-.sign-in-btn:hover {
-  opacity: 1;
-}
-
-.filters {
-  display: flex;
-}
-
-.filter-group {
-  margin-right: 30px;
-}
-
-.apply-filters-btn.btn-secondary {
-  background-color: $brown;
-  color: $eggshell;
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  opacity: .8;
-  margin-bottom: 30px;
-}
-
-.apply-filters-btn.btn-secondary:hover {
-  opacity: 1;
-}
-
-.filter-btn.btn-secondary {
-  margin: 16px 0px;
-  color: $brown;
-  background-color: $eggshell;
-  text-transform: uppercase;
-  border: none;
-  padding: 0px;
-  .icon {
-    align-self: center;
-    margin-left: 8px;
-  }
-}
-
-.spin-btn.btn-secondary {
-  background-color: $redwood;
-  color: $eggshell;
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  opacity: .8;
-}
-
-.spin-btn.btn-secondary:hover {
-  opacity: 1;
-}
-
-.add-activity-btn.btn-secondary {
-  background-color: $redwood;
-  color: $eggshell;
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  opacity: .8;
-}
-
-.add-activity-btn.btn-secondary:hover {
-  opacity: 1;
 }
 
 .home-quote {
@@ -153,20 +24,4 @@ legend {
 .bubble-container {
   display: flex;
   flex-wrap: wrap;
-}
-
-.activity-bubble.btn.btn-secondary {
-  background-color: $eggshell;
-  color: $brown;
-  border-radius: 8px;
-  padding: 8px;
-  border: 1px solid $brown;
-  margin: 16px 16px 0 0;
-  font-weight: 300;
-}
-
-.activity-bubble.btn.btn-secondary:hover {
-  background-color: $brown;
-  color: $eggshell;
-  cursor: pointer;
 }
