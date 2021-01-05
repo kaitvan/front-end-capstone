@@ -1,0 +1,40 @@
+.filters {
+  display: flex;
+}
+
+.filter-group {
+  margin-right: 30px;
+}
+
+legend {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.apply-filters-btn.btn-secondary {
+  background-color: $brown;
+  color: $eggshell;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  opacity: .8;
+  margin-bottom: 30px;
+}
+
+.apply-filters-btn.btn-secondary:hover {
+  opacity: 1;
+}
+
+.filter-btn.btn-secondary {
+  margin: 16px 0px;
+  color: $brown;
+  background-color: $eggshell;
+  text-transform: uppercase;
+  border: none;
+  padding: 0px;
+  .icon {
+    align-self: center;
+    margin-left: 8px;
+  }
+}
