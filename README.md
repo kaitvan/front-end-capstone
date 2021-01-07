@@ -10,7 +10,7 @@ Self-care has been a personal priority for about 2 years and with the onset of t
 * SASS
 
 ## Deployed Site
-[Whirly Live Site](https://whirly.netlify.app/)</br>
+[Whirly Live Site](https://whirly.netlify.app/)</br></br>
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1cd5791d-c5bd-426e-a77a-e9924223a702/deploy-status)](https://app.netlify.com/sites/whirly/deploys)
 
 ## Video
