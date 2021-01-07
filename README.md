@@ -1,8 +1,8 @@
 # Whirly
-Whirly is a self-care app that allows users to curate a list of self-care ideas. This is my front-end capstone project for Nashville Software School. It is a single-page application, built with React.js. The user can create their list and update or delete activities as needed. The user can also filter items in their list by category or time. The user can also filter and spin a wheel to choose a self-care activity. 
+Whirly is a self-care app that allows users to curate a list of self-care ideas. This is my front-end capstone project for Nashville Software School. It is a single-page application, built with React.js. The user can create their list and update or delete activities as needed. The user can also filter items in their list by category or time, and finally, spin a wheel to choose a self-care activity. 
 
 ## The Motivation
-Self-care has been a personal priority for about 2 years and with the onset of the coronavirus pandemic, even more so. I wanted to build a tool that would allow me to keep a personalized list of supportive activities. I've found that even small acts of caring for myself restore
+Self-care has been a personal priority for me and even more so with the onset of the coronavirus pandemic. I wanted to build a tool that would allow me to keep a personalized list of supportive activities. I've found that even small acts of caring for myself restore my sense of peace and energize me to take on the day with a healthier, happier outlook.
 
 ## Technologies
 * React.js
