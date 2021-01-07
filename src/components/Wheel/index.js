@@ -26,20 +26,27 @@ class Wheel extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.activities !== this.props.activities) {
-      this.setState({ activities: this.props.activities });
+      this.setState({ activities: this.props.activities, theta: 0.0 });
+      this.tempTheta = 0.0;
+      this.wheel.style.transform = 'translate(-50%, -50%) rotate(0deg)';
+      this.wheel.style.transition = 'all 0s';
+      for (let i = 0; i < this.wheel.children.length; i += 1) {
+        this.wheel.children[i].style.transform = 'translate(-50%, -50%) rotate(0deg)';
+        this.wheel.children[i].style.transition = 'all 0s';
+      }
     }
   }
 
   stopSpin = () => {
-    this.setState({ spinInProgress: false });
+    this.setState({ spinInProgress: false, theta: 0.0 });
   }
 
   handleClick = (e) => {
     if (e.target.id === 'spin' && !this.state.spinInProgress) {
       clearTimeout(this.animId);
-      const randomNumber = Math.floor(Math.random() * 30 + 10);
-      this.tempTheta = randomNumber * (360 / this.state.activities.length);
-      const time = this.tempTheta / 200;
+      const randomNumber = Math.floor(Math.random() * this.state.activities.length + 20);
+      this.tempTheta += randomNumber * (360 / this.state.activities.length);
+      const time = randomNumber / 8;
 
       this.wheel.style.transform = `translate(-50%, -50%) rotate(${this.tempTheta}deg)`;
       this.wheel.style.transition = `all ${time}s`;
@@ -50,7 +57,7 @@ class Wheel extends Component {
       }
 
       this.animId = setTimeout(() => {
-        this.setState({ theta: this.tempTheta, spinInProgress: true });
+        this.setState({ spinInProgress: true, theta: this.tempTheta });
         this.stopSpin();
       }, time);
     }
@@ -66,7 +73,7 @@ class Wheel extends Component {
           activities={this.state.activities}
           radius={this.state.radius}
           center={this.state.centerOfWheel}
-          style={{ transform: `rotate(-${this.state.theta * 0.07}deg)` }}
+          style={{ transform: `rotate(-${this.state.theta}deg)` }}
         />));
 
     return (
@@ -85,7 +92,7 @@ class Wheel extends Component {
 const styles = {
   wheel: {
     position: 'absolute',
-    top: '50%',
+    top: '60%',
     left: '60%',
     height: '200px',
     width: '200px',
