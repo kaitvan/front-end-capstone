@@ -19,6 +19,7 @@ class Spin extends Component {
     getUserActivities(this.state.uid).then((activitiesArray) => {
       const activities = [];
       activitiesArray.map((activity) => activities.push(activity));
+
       this.setState({ activities });
     });
   }
@@ -55,6 +56,11 @@ class Spin extends Component {
       useThisArray = activities;
     } else {
       useThisArray = filteredActivities;
+    }
+
+    if (useThisArray.length > 12) {
+      const lastIndex = useThisArray.length - 1;
+      useThisArray = useThisArray.slice(lastIndex - 12, lastIndex);
     }
 
     return (
