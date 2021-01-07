@@ -17,8 +17,14 @@ class Spin extends Component {
 
   getActivities = () => {
     getUserActivities(this.state.uid).then((activitiesArray) => {
-      const activities = [];
+      let activities = [];
       activitiesArray.map((activity) => activities.push(activity));
+
+      if (activities.length > 12) {
+        const lastIndex = activities.length - 1;
+        activities = activities.slice(lastIndex - 12, lastIndex);
+      }
+
       this.setState({ activities });
     });
   }
@@ -39,6 +45,11 @@ class Spin extends Component {
       } else if (categoryFiltersArray.length === 0) {
         filteredActivities = this.state.activities.filter((activity) => timeFiltersArray.includes(activity.time));
         filteredActivities.length === 0 ? this.setState({ nothingFound: true }) : this.setState({ nothingFound: false });
+      }
+
+      if (filteredActivities.length > 12) {
+        const lastIndex = filteredActivities.length - 1;
+        filteredActivities = filteredActivities.slice(lastIndex - 12, lastIndex);
       }
 
       this.setState({ filteredActivities });
