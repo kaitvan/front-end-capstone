@@ -62,7 +62,9 @@ class Spin extends Component {
       <h1 className='banner'>Spin</h1>
       <div className='content-text'>
         <Filter filterActivities={this.filterActivities}/>
-        <Wheel uid={this.state.uid} activities={useThisArray}/>
+        <div className='wheel'>
+          <Wheel uid={this.state.uid} activities={useThisArray}/>
+        </div>
       </div>
       </>
     );
